@@ -120,10 +120,6 @@ const App: React.FC = () => {
       return;
     }
 
-    const newOpenCells = [...openCells];
-    newOpenCells[row][col] = true;  
-    setOpenCells(newOpenCells);
-
     if (board[row][col] === 0) {
       poop(row, col); 
     }
@@ -138,12 +134,12 @@ const App: React.FC = () => {
     if (x < 0 || x >= 10 || y < 0 || y >= 10 || openCells[x][y]) {
       return;
     }
-  
-    if (board[x][y] === 0) {
-      const newOpenCells = [...openCells];
-      newOpenCells[x][y] = true;
-      setOpenCells(newOpenCells);
-  
+    
+    const newOpenCells = [...openCells];
+    newOpenCells[x][y] = true;
+    setOpenCells(newOpenCells);
+
+    if (countMines(x,y) === 0) {
       const dx = [-1, 1, 0, 0];
       const dy = [0, 0, -1, 1];
   
